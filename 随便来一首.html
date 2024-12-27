@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>随便听听吧~</title>
+    <script type="text/javascript" src="jquery-3.7.1.js"></script>
+
+ 
+    <style>
+*   {
+    font-family: 'Source Sans Pro', sans-serif;
+    box-sizing: border-box;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-wrapper {
+    position: fixed;
+    top: calc(45% - 22px);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    background-color: #00f0a8;
+    height: 45px;
+    line-height: 42px;
+    padding: 0 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: #282d32;
+    cursor: pointer;
+    transition: all .5s;
+    transition-timing-function:
+    cubic-bezier(0.2, 3, 0.4, 1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 6px;
+}
+
+.btn:hover {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+}
+.btn:active {
+    -webkit-transform: scale(1.05, 1.05);
+            transform: scale(1.05, 1.05);
+}
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text {
+            color:antiquewhite;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: sans-serif;
+            margin-top:-130px;
+            margin-bottom:20px ;
+        }
+
+        #box {
+            min-width: 200px;
+            min-height: 50px;
+            background: #5BD6F9;
+            font-size: 25px;
+            text-align: center;
+            line-height: 50px;
+            color: #FFFFFF;
+            border-radius: 10px;
+            float: left;
+            clear: both;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="btn-wrapper">
+    <main>
+        <div class="text">
+            今天听什么好呢
+        </div>
+        <div id="box">就这个吧</div>
+        <div class= "bts">
+        <button id="start"class="btn" >开始</button>
+        <button id="stop"class="btn" >停止</button>
+        <script type="text/javascript">
+            list = ['落', '谁', '你', '笼', '问', '探窗', '无语', '善变', '白鸽', '勇气', '年轮', '月夜', '冬眠', '晚婚', '后来', '离岸', '卜卦', '舍得', '爱你', '蠢货', '素颜', '江南', '夜车', '若梦', '太阳', '唯一', '大鱼', '走马', '放纵', '2.14', '命运', '踏浪', '出山', '曹操', '芒种', '绿色', '当你', '泡沫', '她说', '体面', '答案', '暖暖', '大眠', '遇见', '落空', '小半', '虚拟', '蝴蝶', '谪居', '谦让', '蔚蓝', '忘了', '空心', '离岸', '白羊', '演员', '暧昧', '芊芊', '南下', '难却', '搁浅', '句号', '如愿', '劝学', '阿嬷', '很任性', '从前说', '达尔文', '欧若拉', '从前慢', '小幸运', '红昭愿', '牵丝戏', '讲真的', '我太笨', '在深秋', '追光者', '坏女孩', '猪猪侠', '好汉歌', 'upupu', '我要你', '太聪明', '明明就', '童话镇', '九张机', '有点甜', '日不落', '小酒窝', '虹之间', '武家坡', '黄梅戏', '卡路里', '丑八怪', '向云端', '龙卷风', '新地球', '说爱你', '下一秒', '他不懂', '多幸运', '年轮说', '空白格', '猜不透', '心之火', '爱人呢', '无情画', '我想念', '干物女', '白山茶', '壁上观', '我知道', 'APT.', '花之歌', '夜航星', '多情种', '虞兮叹', '百利甜', '放纵L', '娃娃脸', '会不会', '无限速', '凑热闹', '罗生门', '我爱他', '红玫瑰', '○+●', '小红象', '桃花诺', '广寒宫', '下雨天', '爱人错过', '夏天的风', '豆花之歌', '无人之岛', '时间煮雨', '勾指起誓', '第三人称', '逢场作戏', '后会无期', '岁月神偷', '告白气球', '飞鸟和蝉', '天若有情', '你啊你啊', '我怀念的', '身骑白马', '爱情买卖', '我的美丽', '枕边童话', '一笑倾城', '到此为止', '小狗乖乖', '自由自在', '荷塘月色', '月亮之上', '心如止水', '天外来物', '熬夜上瘾', '我好想你', '云烟成雨', '空空如也', '四季予你', '后会无期', '危险派对', '有何不可', '说散就散', '我们的歌', '天若有情', '特别的人', '失落沙洲', '你在不在', '红尘客栈', '明天你好', '世末歌者', '坠落星空', '一点一滴', '9420', '人机朋友', '你若成风', '像风一样', '失眠飞行', '暮色回响', '如果可以', '玫瑰少年', '越来越不懂', '可惜没如果', '背对背拥抱', '红色高跟鞋', '淋雨一直走', '奇妙能力歌', '我的歌声里', '可惜不是你', '有一种悲伤', '这，就是爱', '易燃易爆炸', '隐形的翅膀', '下个路口见', '勇气大爆发', '开心往前飞', '至少还有你', '如果爱忘了', '最炫民族风', '淋雨一直走', '心愿便利贴', '客官不可以', '手心的蔷薇', '你是对的人', '少一点天分', '我的未来式', '至少还有你', 'Letting Go', '一样的月光', '最初的记忆', '没那么简单', '一点点喜欢', '免我蹉跎苦', '七月七日晴', 'I love U', 'memories', '再见Monica', '多余的解释', '五十后以后', '123我爱你', 'upupu', '东京不太热', '山楂树の恋', '陪我过个冬', '直到你降临', '不潮不用花钱', '阿拉斯加海湾', '永不失联的爱', '我想我不够好', '你是我的风景', '说好的幸福呢', '巴啦啦小魔仙', '一万个舍不得', '失恋阵线联盟', '123我爱你', '那女孩对我说', '是妈妈是女儿', '下个，路口，见', '告诉自己忘了他', '漂洋过海来看你', '白月光与朱砂痣', '不要忘记我爱你', '我还有点小糊涂', '大家一起喜洋洋', '爱我你就抱抱我', '我会自己上厕所', '热爱105℃的你', '这世界那么多人', '想把我唱给你听', '今天你要嫁给我', '给我一个理由忘记', '在加纳共和国离婚', '好像掉进爱情海里', '我的一个道姑朋友', '别看我只是一只羊', 'Take Me Hand', 'Wonderful U', '我好像在哪见过你', 'BINGBIAN病变', '你的酒馆对我打了烊', '就让这大雨全都落下', 'Always Online', '无人知晓的我', '我是你的小狗', '写给我第一个女孩的歌', '暗恋过 结局呢', '他只是经过', '小明是个画家', '蒲公英的约定', '我的宫廷我做主', '给我一个吻', '说好了不见面', '单身狗之歌', '不想做朋友', '把回忆拼好给你'];
+
+        $('#start').click(function(){
+            immer = setInterval(function(){
+                num = Math.floor(Math.random() * list.length);
+                $('#box').html(list[num]);
+            },30)
+        });
+        $('#stop').click(function(){
+            clearInterval(immer);
+            (function(){
+                se =  setInterval(function(){
+                    nu = Math.floor(Math.random() * list.length);
+                    $('#box').html(li[nu]);
+                },30);
+            })();
+        });
+    </script>
+    </div>
+    </main>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+
+    <script>
+        var c = document.getElementById('canvas');
+        var ctx = c.getContext('2d');
+        var btn1 = document.getElementsByClassName('btn')[0];
+        var btn2 = document.getElementsByClassName('btn')[1];
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+
+        var mouseX = c.width / 2;
+        var mouseY = c.height / 2;
+        var txtPosition = 0;
+
+        var particles = [];
+
+        btn1.addEventListener('mouseup', function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createParticles();
+        });
+        btn2.addEventListener('mouseup', function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createParticles();
+        });
+        setTimeout(function () {
+            createParticles();
+        }, 250);
+
+        draw();
+
+        function draw() {
+            drawBg();
+            incParticles();
+            drawParticles();
+            window.requestAnimationFrame(draw);
+        }
+
+        function drawBg() {
+            ctx.rect(0, 0, c.width, c.height);
+            ctx.fillStyle = "rgb(40, 45, 50)";
+            ctx.fill();
+        }
+
+        function drawParticles() {
+            for (i = 0; i < particles.length; i++) {
+                ctx.beginPath();
+                ctx.arc(particles[i].x,
+                    particles[i].y,
+                    particles[i].size,
+                    0,
+                    Math.PI * 2);
+                ctx.fillStyle = particles[i].color;
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+
+        function incParticles() {
+            for (i = 0; i < particles.length; i++) {
+                particles[i].x += particles[i].velX;
+                particles[i].y += particles[i].velY;
+
+                particles[i].size = Math.max(0, (particles[i].size - .05));
+
+                if (particles[i].size === 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+
+        function createParticles() {
+            for (i = 0; i < 30; i++) {
+                particles.push({
+                    x: mouseX,
+                    y: mouseY,
+                    size: parseInt(Math.random() * 10),
+                    color: 'rgb(' + ranRgb() + ')',
+                    velX: ranVel(),
+                    velY: ranVel()
+                });
+            }
+        }
+
+        function ranRgb() {
+            var colors = [
+                '255, 122, 206',
+                '0, 157, 255',
+                '0, 240, 168',
+                '0, 240, 120'
+            ];
+            var i = parseInt(Math.random() * 10);
+            return colors[i];
+        }
+
+
+        function ranVel() {
+            var vel = 0;
+
+            if (Math.random() < 0.5) {
+                vel = Math.abs(Math.random());
+            } else {
+                vel = -Math.abs(Math.random());
+            } return vel;
+        }
+
+        var btnTxt = [];
+
+        function changeText() {
+            if (txtPosition !== btnTxt.length) {
+                btn.innerHTML = btnTxt[txtPosition];
+                txtPosition += 1;
+            }
+        }</script>
+    </body>
+</html>
